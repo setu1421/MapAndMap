@@ -9,7 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-
+//This is my first activity
 public class MainActivity extends ActionBarActivity {
 
     @Override
