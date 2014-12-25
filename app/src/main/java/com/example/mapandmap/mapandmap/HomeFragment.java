@@ -1,6 +1,7 @@
 package com.example.mapandmap.mapandmap;
 
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,8 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -25,6 +29,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.List;
 
 
@@ -35,7 +40,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     private GoogleMap map;
     EditText et;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.home_map_activity, null, false);
@@ -63,6 +68,68 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
        //added the go button listener
        Button go = (Button) v.findViewById(R.id.go);
         go.setOnClickListener(this);
+        //added mapclicklistener for testing
+        /*map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+                Toast.makeText(getActivity(),"it worked",Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        //making my custom infoadapter
+
+       /* map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            public void onInfoWindowClick(Marker marker) {
+                String[] items = {"onefunction", "twofunction"};
+                AlertDialog.Builder itemDilog = new AlertDialog.Builder(getActivity());
+                itemDilog.setTitle("");
+                itemDilog.setCancelable(false);
+                itemDilog.setItems(items, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0: {
+                                //onefunction();
+                            }
+                            break;
+                            case 1: {
+                                //twofunction();
+                            }
+                            break;
+                        }
+
+                    }
+                });
+                itemDilog.show();
+
+            }
+        });*/
+        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+            @Override
+            public View getInfoWindow(Marker marker) {
+                return null;
+            }
+
+            @Override
+            public View getInfoContents(Marker marker) {
+                //View v1=inflater.inflate(R.layout.map_info_listview,null,false);
+                View v1=getActivity().getLayoutInflater().inflate(R.layout.map_info_listview,null);
+                ListView ls = (ListView) v1.findViewById(R.id.list);
+                String[] item = new String[]{"one","two"};
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1,item);
+                ls.setAdapter(adapter);
+                ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        //String item = (String) view.getItem(position);
+                        Toast.makeText(getActivity(), "it worked", Toast.LENGTH_LONG).show();
+                    }
+                });
+                return v1;
+            }
+        });
+
+
+
         return v;
     }
 
