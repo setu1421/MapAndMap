@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -48,7 +49,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         MapFragment mapFrag = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         map = mapFrag.getMap();
+        //added the custom info adapter
+        if(map != null){
+            map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
+                @Override
+                public View getInfoWindow(Marker arg0) {
+                    // TODO Auto-generated method stub
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+                    // TODO Auto-generated method stub
+                    View v= getActivity().getLayoutInflater().inflate(R.layout.map_info_listview, null);
+                    TextView tvLocality=(TextView) v.findViewById(R.id.tv_locality);
+                    TextView tvLat=(TextView) v.findViewById(R.id.tv_lat);
+                    TextView tvLng=(TextView) v.findViewById(R.id.tv_lng);
+                    TextView tvSnippet=(TextView) v.findViewById(R.id.tv_snippet);
+
+                    LatLng ll=marker.getPosition();
+                    tvLocality.setText(marker.getTitle());
+                    tvLat.setText("Latitude: "+ll.latitude);
+                    tvLng.setText("Longitude: "+ll.longitude);
+                    tvSnippet.setText(marker.getSnippet());
+                    return v;
+                }
+            });
+        }
         Marker hamburg = map.addMarker(new MarkerOptions().position(HAMBURG)
                 .title("Hamburg"));
         Marker kiel = map.addMarker(new MarkerOptions()
@@ -78,7 +106,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         //making my custom infoadapter
 
-       /* map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             public void onInfoWindowClick(Marker marker) {
                 String[] items = {"onefunction", "twofunction"};
                 AlertDialog.Builder itemDilog = new AlertDialog.Builder(getActivity());
@@ -89,6 +117,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                         switch (which) {
                             case 0: {
                                 //onefunction();
+                                Toast.makeText(getActivity(),"it worked",Toast.LENGTH_SHORT).show();
                             }
                             break;
                             case 1: {
@@ -102,8 +131,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 itemDilog.show();
 
             }
-        });*/
-        map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+        });
+        /*map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
             @Override
             public View getInfoWindow(Marker marker) {
                 return null;
@@ -126,7 +155,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 });
                 return v1;
             }
-        });
+        });*/
 
 
 
