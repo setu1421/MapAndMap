@@ -106,18 +106,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
         //making my custom infoadapter
 
+
         map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             public void onInfoWindowClick(Marker marker) {
                 String[] items = {"onefunction", "twofunction"};
-                AlertDialog.Builder itemDilog = new AlertDialog.Builder(getActivity());
+                final AlertDialog.Builder itemDilog = new AlertDialog.Builder(getActivity());
                 itemDilog.setTitle("");
-                itemDilog.setCancelable(false);
+                itemDilog.setCancelable(true);
                 itemDilog.setItems(items, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0: {
-                                //onefunction();
-                                Toast.makeText(getActivity(),"it worked",Toast.LENGTH_SHORT).show();
+
                             }
                             break;
                             case 1: {

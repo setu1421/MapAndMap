@@ -20,7 +20,7 @@ public class MainActivity extends ActionBarActivity {
         signin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Intent slidingintent = new Intent(MainActivity.this,SlidingDrawerActivity.class);
+                Intent slidingintent = new Intent(MainActivity.this,SignUp.class);
                 startActivity(slidingintent);
                 return true;
             }
