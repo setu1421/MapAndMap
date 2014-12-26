@@ -33,7 +33,7 @@
         android:layout_toLeftOf="@+id/or"
         android:layout_alignParentBottom="true"
 
-       />
+        />
 
 
     <TextView
@@ -46,7 +46,6 @@
         android:layout_alignParentBottom="true"
 
         android:layout_toRightOf="@+id/or"
-
 
 
         />

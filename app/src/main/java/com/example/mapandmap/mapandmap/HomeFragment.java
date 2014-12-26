@@ -34,7 +34,7 @@ import java.lang.reflect.Array;
 import java.util.List;
 
 
-public class HomeFragment extends Fragment implements View.OnClickListener{
+public class HomeFragment extends Fragment implements View.OnClickListener {
     // ...
     static final LatLng HAMBURG = new LatLng(53.558, 9.927);
     static final LatLng KIEL = new LatLng(53.551, 9.993);
@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 .findFragmentById(R.id.map);
         map = mapFrag.getMap();
         //added the custom info adapter
-        if(map != null){
+        if (map != null) {
             map.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
 
                 @Override
@@ -62,16 +62,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 @Override
                 public View getInfoContents(Marker marker) {
                     // TODO Auto-generated method stub
-                    View v= getActivity().getLayoutInflater().inflate(R.layout.map_info_listview, null);
-                    TextView tvLocality=(TextView) v.findViewById(R.id.tv_locality);
-                    TextView tvLat=(TextView) v.findViewById(R.id.tv_lat);
-                    TextView tvLng=(TextView) v.findViewById(R.id.tv_lng);
-                    TextView tvSnippet=(TextView) v.findViewById(R.id.tv_snippet);
+                    View v = getActivity().getLayoutInflater().inflate(R.layout.map_info_listview, null);
+                    TextView tvLocality = (TextView) v.findViewById(R.id.tv_locality);
+                    TextView tvLat = (TextView) v.findViewById(R.id.tv_lat);
+                    TextView tvLng = (TextView) v.findViewById(R.id.tv_lng);
+                    TextView tvSnippet = (TextView) v.findViewById(R.id.tv_snippet);
 
-                    LatLng ll=marker.getPosition();
+                    LatLng ll = marker.getPosition();
                     tvLocality.setText(marker.getTitle());
-                    tvLat.setText("Latitude: "+ll.latitude);
-                    tvLng.setText("Longitude: "+ll.longitude);
+                    tvLat.setText("Latitude: " + ll.latitude);
+                    tvLng.setText("Longitude: " + ll.longitude);
                     tvSnippet.setText(marker.getSnippet());
                     return v;
                 }
@@ -92,9 +92,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         // Zoom in, animating the camera.
         map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
-         et = (EditText) v.findViewById(R.id.editText1);
-       //added the go button listener
-       Button go = (Button) v.findViewById(R.id.go);
+        et = (EditText) v.findViewById(R.id.editText1);
+        //added the go button listener
+        Button go = (Button) v.findViewById(R.id.go);
         go.setOnClickListener(this);
         //added mapclicklistener for testing
         /*map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
@@ -158,7 +158,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         });*/
 
 
-
         return v;
     }
 
@@ -201,10 +200,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         gotoLocation(lat, lng, 15);
 
     }
-  // to hide keyboard must use getActivity() and Context
+    // to hide keyboard must use getActivity() and Context
 
     private void hideSoftKeyboard(View v) {
-        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 

@@ -9,6 +9,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 //This is my first activity
 public class MainActivity extends ActionBarActivity {
 
@@ -17,14 +19,26 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start_screen);
         TextView signin = (TextView) findViewById(R.id.signin);
+        TextView signup = (TextView) findViewById(R.id.signup);
+        signup.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Intent signupintent = new Intent(MainActivity.this,SignUp.class);
+                startActivity(signupintent);
+                return false;
+
+            }
+        });
         signin.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Intent slidingintent = new Intent(MainActivity.this,SignUp.class);
-                startActivity(slidingintent);
-                return true;
+                Intent signinintent = new Intent(MainActivity.this,SignIn.class);
+                startActivity(signinintent);
+                return false;
             }
         });
+
+
     }
 
     //This is the onCreateOptionsMenu method
