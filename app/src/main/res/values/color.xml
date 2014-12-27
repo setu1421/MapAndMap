@@ -2,10 +2,10 @@
 <resources>
     <color name="text_color">#FFFFFF</color>
     <color name="list_divider">#FFFFFF</color>
-    <color name="list_background">#A9A9A9</color>
-    <color name="list_item_title">#F8F8FF</color>
+    <color name="list_background">#FFF</color>
+    <color name="list_item_title">#000000</color>
     <color name="counter_text_bg">#008000</color>
-    <color name="list_background_pressed">#ADFF2F</color>
+    <color name="list_background_pressed">#00CCFF</color>
     <color name="counter_text_color">#F5FFFA</color>
 
 </resources>

@@ -5,20 +5,37 @@
     android:layout_height="match_parent">
 
     <!-- Framelayout to display Fragments -->
+
     <FrameLayout
         android:id="@+id/frame_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
     <!-- Listview to display slider menu -->
-    <ListView
-        android:id="@+id/list_slidermenu"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@color/list_divider"
-        android:dividerHeight="1dp"
-        android:listSelector="@drawable/list_selector"
-        android:background="@color/list_background" />
+    <LinearLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="280dp"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:layout_gravity="start">
+
+        <ImageView
+            android:layout_width="280dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_action_email"/>
+
+
+        <ListView
+            android:id="@+id/list_slidermenu"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:choiceMode="singleChoice"
+            android:divider="@color/list_divider"
+
+            android:dividerHeight="1dp"
+            android:listSelector="@drawable/list_selector"
+            android:background="@color/list_background" />
+
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -20,6 +20,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.start_screen);
         TextView signin = (TextView) findViewById(R.id.signin);
         TextView signup = (TextView) findViewById(R.id.signup);
+
+        //must return true otherwise it will take many backbutton press to come back to the previous activity
         signup.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
